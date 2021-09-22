@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -apmcq
+ls -apCq -m
