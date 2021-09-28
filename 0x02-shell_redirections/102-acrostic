@@ -1,2 +1,2 @@
 #!/bin/bash
-printf "%s\n" "$(cut -c1 testing | perl -pe 's/\n//')"
+printf "%s\n" "$(cut -c1 | perl -pe 's/\n//')"
