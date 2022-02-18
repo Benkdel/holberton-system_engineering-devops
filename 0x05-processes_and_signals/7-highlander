@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# prints infin loop, but prints other text when SIGTERM signal is received
+while true
+do
+	echo "To infinity and beyond"
+	sleep 2
+	trap 'echo I am invincible!!!' SIGTERM
+done
