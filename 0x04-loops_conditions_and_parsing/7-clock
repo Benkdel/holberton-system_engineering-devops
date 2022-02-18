@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# clock - displays the time for 12 hours and 59 minutes
+i=0
+hour=0
+minute=0
+reminder=1
+
+while [ $i -lt  767 ]
+do
+    reminder=$(( minute % 59 ))
+    if [ $reminder -eq 0 ]
+    then
+        echo "Hour: $hour"
+        hour=$(( hour + 1 ))
+        minute=$(( 0 ))
+    fi
+    
+    minute=$(( minute + 1 ))
+    echo $minute
+    i=$(( i + 1 ))
+done
