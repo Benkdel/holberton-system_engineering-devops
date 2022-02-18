@@ -3,6 +3,6 @@
 
 for filepath in *
 do
-    filename=$( cut -d '-' -f 2- <<< $filepath )
-    echo $filename
+    filename=$( cut -d '-' -f 2- <<< "$filepath" )
+    echo "$filename"
 done
