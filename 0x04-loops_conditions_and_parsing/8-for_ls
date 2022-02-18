@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# script that displays content of the current directory using basename
+
+for filepath in *
+do
+    filename=$(basename $filepath)
+    echo $filename
+done
