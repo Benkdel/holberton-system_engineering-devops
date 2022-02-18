@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# fizzbuzz
+i=1
+reminder=0
+
+while [ $i -le  100 ]
+do
+    reminder=$(( i % 15 ))
+    if [ $reminder -eq 0 ]; then
+        echo "FizzBuzz"
+    else
+        reminder=$(( i % 3 ))
+        if [ $reminder -eq 0 ]; then
+            echo "Fizz"
+        else
+            reminder=$(( i % 5 ))
+            if [ $reminder -eq 0 ]; then
+                echo "Buzz"
+            else
+                echo $i
+            fi
+        fi
+    fi
+    i=$(( i + 1 ))
+done
