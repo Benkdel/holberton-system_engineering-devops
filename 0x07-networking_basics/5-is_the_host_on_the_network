@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Script - ping an IP address paseed as an argument
+# ping to the address passed as an argument
 if [ $# -ne 1 ]
 then
 	echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
