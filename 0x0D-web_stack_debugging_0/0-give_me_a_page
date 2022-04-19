@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-# Script start service apache2
+# Script start service apache2 to fix server
 service apache2 start
