@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+## Install nginx web server and configure redirection to another web
+
+# install nginx
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo service nginx start
+sudo chown -R ubuntu /var/www
+
+### create or modify websites
+echo "Hello World" > /var/www/html/index.nginx-debian.html
+echo "Ceci n'est pas une page" > /var/www/html/error_simple.html
+
+# redirections
+sudo sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/google.com permanent;/" /etc/nginx/sites-available/default
+sudo sed -i "s/^server\s{/server {\n\terror_page 404 \/error_simple.html;/1" /etc/nginx/sites-available/default
+
+### Start service nginx.
+sudo service nginx restart
