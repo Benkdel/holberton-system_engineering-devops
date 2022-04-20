@@ -1,8 +1,7 @@
-# Install a package - Using Puppet, install puppet-lint.
+# Install a package - Using Puppet, install flask.
 
-package { 'puppet_lint':
-    ensure   => '2.5.0',
-    name     => 'puppet-lint',
-    provider => 'gem',
-    source   => 'http://rubygems.org',
+exec { 'Flask Install':
+    command => 'pip3 install Flask',
+    provider => 'shell',
 }
+
