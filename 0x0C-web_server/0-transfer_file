@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# script to transfer a file between servers
+# scp -i ~/.ssh/id_rsa.pub some_web.htmk ubuntu@55.555.55:~/ 
+
+filepath=$1
+targetIP=$2
+userName=$3
+SSHkeyPath=$4
+
+if (($# < 4))
+then
+    echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+else
+    scp -o StrictHostKeyChecking=no -i "$SSHkeyPath" "$filepath" "$userName@$targetIP:~/"
+fi
