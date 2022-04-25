@@ -5,7 +5,7 @@
 
 sudo apt-get -y update
 sudo apt-get -y install nginx
-sudo chown -R ubuntu /var/www
+#sudo chown -R ubuntu /var/www
 
 ### create or modify websites
 echo "Hello World" > /var/www/html/index.nginx-debian.html
@@ -14,6 +14,9 @@ echo "Ceci n'est pas une page" > /var/www/html/error_simple.html
 # redirections
 sudo sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/google.com permanent;/" /etc/nginx/sites-available/default
 sudo sed -i "s/^server\s{/server {\n\t\terror_page 404 \/error_simple.html;/1" /etc/nginx/sites-available/default
+
+# configure response header
+sudo sed -i "/^server/a \\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
 
 ### Start service nginx.
 sudo service nginx restart
