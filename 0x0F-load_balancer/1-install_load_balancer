@@ -1,26 +1,31 @@
 #!/usr/bin/env sh
 # install load balancer in server
 
-# instalation of haproxy
+# update and aupgrade
+sudo apt-get -y update
+sudo apt-get -y upgrade
 
+# instalation of haproxy
 sudo apt-get -y install --no-install-recommends software-properties-common
 sudo add-apt-repository -y ppa:vbernat/haproxy-2.4
-sudo apt-get -y update
-sudo apt-get -y install haproxy=2.4.
+sudo apt-get -y install haproxy
 
 # dar permisos a la carpeta para que echo funcione
 sudo chown -R ubuntu /etc/haproxy/
-sudo chown -R ubuntu /etc/haproxy/haproxy.cfg
 
-# configuration
-echo "\nfrontend my_frontend\n\
-\tbind 0.0.0.0:80\n\
-\tmode http\n\
-\tdefault_backends my_backend\n" >> /etc/haproxy/haproxy.cfg
+### Configure HAproxy so that it send traffic to web-01 and web-02
+### Distribute requests using a roundrobin algorithm
+echo """
+frontend MyFrontend
+        bind *:80
+        mode http
+        default_backend myServers
 
-echo "\nbackend my_backend\n\
-\tbalance roundrobin\n\
-\tserver 3669-web-01 35.185.21.233:80 check\n\
-\tserver 3669-web-02 35.172.200.220:80 check\n" >> /etc/haproxy/haproxy.cfg
+backend myServers
+        balance roundrobin
+        server 3669-web-01 35.185.21.233:80 check
+        server 3669-web-02 35.172.200.220:80 check
+""" >> /etc/haproxy/haproxy.cfg
 
+# restart service
 sudo service haproxy restart
