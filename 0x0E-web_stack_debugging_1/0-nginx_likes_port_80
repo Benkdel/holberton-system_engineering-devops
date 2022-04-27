@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# deb 1
+sudo sed -i sed 's/server /g' example #/etc/nginx/sites-enabled/default
+# sudo service nginx restart
