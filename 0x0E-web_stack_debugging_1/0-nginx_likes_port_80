@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# deb 1
-sudo sed -i sed 's/server /g' example #/etc/nginx/sites-enabled/default
-# sudo service nginx restart
+# fix ports
+sudo sed -i 's/listen 8080 default_server;/listen 80 default_server/' example #/etc/nginx/sites-enabled/default
+sudo sed -i 's/listen \[::\]:8080 default_server ipv6only=on;/listen \[::\]:80 default_server ipv6only=on;/' example #/etc/nginx/sites-enabled/default
