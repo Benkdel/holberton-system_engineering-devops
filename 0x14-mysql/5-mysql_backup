@@ -4,10 +4,11 @@
 passwd=$1
 user='root'
 sqlfile='backup.sql'
-tagFileName='$(date +%d-%m-%y)'
+tagFileName=$(date +%d-%m-%y).tar.gz
+
 
 # create a backup
 sudo mysqldump -u $user -p $passwd --all-databases > '/tmp/$sqlfile'
 
 # compress backup
-sudo tar -zcvf tagFileName.tar.gz '/tmp/$sqlfile'
+sudo tar -zcvf $tagFileName '/tmp/$sqlfile'
