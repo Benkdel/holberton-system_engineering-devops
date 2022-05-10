@@ -8,7 +8,7 @@ tagFileName=$(date +%d-%m-%Y).tar.gz
 
 
 # create a backup
-mysqldump -u $user -p "$passwd" --all-databases > $sqlfile
+mysqldump -u "$user" -p"$passwd" --all-databases > "$sqlfile"
 
 # compress backup
-sudo tar -zcvf "$tagFileName" $sqlfile
+tar -zcvf "$tagFileName" "$sqlfile"
