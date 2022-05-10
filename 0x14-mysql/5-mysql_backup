@@ -4,7 +4,7 @@
 passwd=$1
 user='root'
 sqlfile='backup.sql'
-tagFileName=$(date +%d-%m-%y).tar.gz
+tagFileName=$(date +%d-%m-%Y).tar.gz
 
 
 # create a backup
