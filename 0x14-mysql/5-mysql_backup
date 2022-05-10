@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# MySQL backup script
+
+passwd=$1
+user='root'
+sqlfile='backup.sql'
+tagFileName='$(date +%d-%m-%y)'
+
+# create a backup
+sudo mysqldump -u $user -p $passwd --all-databases > $sqlfile
+
+# compress backup
+sudo tar -zcvf tagFileName.tar.gz
