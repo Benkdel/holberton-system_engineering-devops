@@ -97,4 +97,6 @@ mysql> SHOW SLAVE HOSTS;
 === FINALLY, add a new record to table in wb-01 and see if it replicates on wb-02 ===
 
 
+execute bash file in remote server:
+    ssh ubuntu@34.148.38.180 'bash -s' < ./5-mysql_backup $passw for mysql
 
