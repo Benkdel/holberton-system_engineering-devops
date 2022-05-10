@@ -7,7 +7,7 @@ sqlfile='backup.sql'
 tagFileName='$(date +%d-%m-%y)'
 
 # create a backup
-sudo mysqldump -u $user -p $passwd --all-databases > $sqlfile
+sudo mysqldump -u $user -p $passwd --all-databases > '/tmp/$sqlfile'
 
 # compress backup
-sudo tar -zcvf tagFileName.tar.gz
+sudo tar -zcvf tagFileName.tar.gz '/tmp/$sqlfile'
