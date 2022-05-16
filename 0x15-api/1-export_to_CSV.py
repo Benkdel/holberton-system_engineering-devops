@@ -25,9 +25,10 @@ if __name__ == '__main__':
             todo_list.append(r)
 
     for task in todo_list:
-        row = [employeeID, user_bio.get('name'), task.get('completed'), task.get('title')]
+        row = [employeeID, user_bio.get('username'), task.get(
+            'completed'), task.get('title')]
         status_list.append(row)
 
-    with open('{}.csv'.format(employeeID), 'w') as csv_file:
-        csv.writer(csv_file, delimiter=',',
+    with open('{}.csv'.format(employeeID), 'w', encoding="utf8") as csv_file:
+        csv.writer(csv_file, delimiter=",",
                    quoting=csv.QUOTE_ALL).writerows(status_list)
