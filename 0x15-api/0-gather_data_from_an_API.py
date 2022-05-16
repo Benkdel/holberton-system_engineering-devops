@@ -4,6 +4,7 @@
 """
 import sys
 
+
 def user_info(id):
     import json
     from urllib import request as rq
