@@ -7,9 +7,8 @@
 
 if __name__ == '__main__':
     import csv
-    import json
+    import requests as rq
     from sys import argv
-    from urllib import request as rq
 
     employeeID = argv[1]
     user_bio = {}
@@ -18,14 +17,12 @@ if __name__ == '__main__':
     _url_1 = 'https://jsonplaceholder.typicode.com/users'
     _url_2 = 'https://jsonplaceholder.typicode.com/todos'
 
-    with rq.urlopen('{}/{}'.format(_url_1, employeeID)) as urlObj:
-        user_bio = json.loads(urlObj.read())
+    user_bio = rq.get('{}/{}'.format(_url_1, employeeID)).json()
+    todo_response = rq.get(_url_2).json()
 
-    with rq.urlopen(_url_2) as urlObj:
-        response = json.loads(urlObj.read())
-        for r in response:
-            if r['userId'] == int(employeeID):
-                todo_list.append(r)
+    for r in response:
+        if r['userId'] == int(employeeID):
+            todo_list.append(r)
 
     for task in todo_list:
         row = [employeeID, user_bio['name'], task['completed'], task['title']]
