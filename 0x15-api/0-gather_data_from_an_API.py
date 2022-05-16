@@ -2,26 +2,24 @@
 """
     Gather data from an API
 """
+import sys
 
-
-if __name__ == '__main__':
+def user_info(id):
     import json
-    from sys import argv as arguments
     from urllib import request as rq
 
-    employeeID = arguments[1]
     user_bio = {}
     todo_list = []
     done_tasks = []
     _url_1 = 'https://jsonplaceholder.typicode.com/users'
     _url_2 = 'https://jsonplaceholder.typicode.com/todos'
-    with rq.urlopen('{}/{}'.format(_url_1, employeeID)) as urlObj:
+    with rq.urlopen('{}/{}'.format(_url_1, id)) as urlObj:
         user_bio = json.loads(urlObj.read())
 
     with rq.urlopen(_url_2) as urlObj:
         response = json.loads(urlObj.read())
         for r in response:
-            if r['userId'] == int(employeeID):
+            if r['userId'] == int(id):
                 todo_list.append(r)
                 if r['completed'] is True:
                     done_tasks.append(r)
@@ -30,3 +28,6 @@ if __name__ == '__main__':
         user_bio['name'], len(done_tasks), len(todo_list)))
     for task in done_tasks:
         print("\t{}".format(task['title']))
+
+if __name__ == "__main__":
+    user_info(int(sys.argv[1]))
