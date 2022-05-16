@@ -29,4 +29,4 @@ if __name__ == '__main__':
     print("Employee {} is done with tasks({}/{}):".format(
         user_bio.get('name'), len(done_tasks), len(todo_list)))
     for task in done_tasks:
-        print("\t{}".format(task['title']))
+        print("\t{}".format(task.get('title')))
