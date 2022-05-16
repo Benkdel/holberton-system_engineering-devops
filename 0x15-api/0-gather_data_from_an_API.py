@@ -3,17 +3,16 @@
 
 
 if __name__ == "__main__":
-    import json
-    from sys import argv
     import requests
+    from sys import argv
 
     employeeID = argv[1]
-    # user_bio = {}
+    user_bio = {}
     todo_list = []
     done_tasks = []
     url_1 = 'https://jsonplaceholder.typicode.com/users'
     url_2 = 'https://jsonplaceholder.typicode.com/todos'
-    
+
     user_bio = requests.get('{}/{}'.format(url_1, employeeID)).json()
     todo_response = requests.get(url_2).json()
 
