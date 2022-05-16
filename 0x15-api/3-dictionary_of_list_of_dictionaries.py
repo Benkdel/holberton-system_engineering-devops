@@ -6,28 +6,23 @@
 
 
 if __name__ == '__main__':
-    import csv
     import json
-    from sys import argv as arguments
-    from urllib import request as rq
+    import requests as rq
 
     users_bio = {}
     todo_list = []
     status_dict = {}
-    _url_1 = 'https://jsonplaceholder.typicode.com/users'
-    _url_2 = 'https://jsonplaceholder.typicode.com/todos'
+    url_1 = 'https://jsonplaceholder.typicode.com/users'
+    url_2 = 'https://jsonplaceholder.typicode.com/todos'
 
-    with rq.urlopen(_url_1) as urlObj:
-        users_bio = json.loads(urlObj.read())
-
-    with rq.urlopen(_url_2) as urlObj:
-        todo_list = json.loads(urlObj.read())
+    users_bio = rq.get(url_1).json()
+    todo_list = rq.get(url_2).json()
 
     for user in users_bio:
         tasks = []
         for todo in todo_list:
             if todo['userId'] == user['id']:
-                tasks.append({"username": user["name"],
+                tasks.append({"username": user["username"],
                               "task": todo['title'],
                               "completed": todo['completed']})
         status_dict[user['id']] = tasks
