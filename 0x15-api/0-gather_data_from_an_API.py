@@ -21,9 +21,9 @@ if __name__ == '__main__':
     with rq.urlopen(_url_2) as urlObj:
         response = json.loads(urlObj.read())
         for r in response:
-            if r['userId'] == int(employeeID):
+            if r.get('userId') == int(employeeID):
                 todo_list.append(r)
-                if r['completed'] is True:
+                if r.get('completed') is True:
                     done_tasks.append(r)
 
     print("Employee {} is done with tasks({}/{}):".format(
