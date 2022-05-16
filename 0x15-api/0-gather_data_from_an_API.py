@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-    Gather data from an API
-"""
+""" Gather data from an API """
 
 
 if __name__ == "__main__":
