@@ -27,6 +27,6 @@ if __name__ == '__main__':
                     done_tasks.append(r)
 
     print("Employee {} is done with tasks({}/{}):".format(
-        user_bio['name'], len(done_tasks), len(todo_list)))
+        user_bio.get('name'), len(done_tasks), len(todo_list)))
     for task in done_tasks:
         print("\t{}".format(task['title']))
