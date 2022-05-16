@@ -6,10 +6,10 @@
 
 if __name__ == '__main__':
     import json
-    from sys import argv as arguments
+    from sys import argv
     from urllib import request as rq
 
-    employeeID = arguments[1]
+    employeeID = argv[1]
     user_bio = {}
     todo_list = []
     done_tasks = []
