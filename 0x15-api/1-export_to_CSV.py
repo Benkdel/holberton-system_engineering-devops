@@ -14,18 +14,18 @@ if __name__ == '__main__':
     user_bio = {}
     todo_list = []
     status_list = []
-    _url_1 = 'https://jsonplaceholder.typicode.com/users'
-    _url_2 = 'https://jsonplaceholder.typicode.com/todos'
+    url_1 = 'https://jsonplaceholder.typicode.com/users'
+    url_2 = 'https://jsonplaceholder.typicode.com/todos'
 
-    user_bio = rq.get('{}/{}'.format(_url_1, employeeID)).json()
-    todo_response = rq.get(_url_2).json()
+    user_bio = rq.get('{}/{}'.format(url_1, employeeID)).json()
+    todo_response = rq.get(url_2).json()
 
     for r in todo_response:
-        if r['userId'] == int(employeeID):
+        if r.get('userId') == int(employeeID):
             todo_list.append(r)
 
     for task in todo_list:
-        row = [employeeID, user_bio['name'], task['completed'], task['title']]
+        row = [employeeID, user_bio.get('name'), task.get('completed'), task.get('title')]
         status_list.append(row)
 
     with open('{}.csv'.format(employeeID), 'w') as csv_file:
