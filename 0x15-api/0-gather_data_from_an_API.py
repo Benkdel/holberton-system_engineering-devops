@@ -15,7 +15,7 @@ if __name__ == "__main__":
     _url_2 = 'https://jsonplaceholder.typicode.com/todos'
     with request.urlopen('{}/{}'.format(_url_1, employeeID)) as urlObj:
         user_bio = json.loads(urlObj.read())
-    
+
     with request.urlopen(_url_2) as urlObj:
         response = json.loads(urlObj.read())
         for r in response:
