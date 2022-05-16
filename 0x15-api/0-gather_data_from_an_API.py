@@ -2,12 +2,12 @@
 """
     Gather data from an API
 """
+import json
 import sys
+from urllib import request as rq
 
 
 def user_info(id):
-    import json
-    from urllib import request as rq
 
     user_bio = {}
     todo_list = []
@@ -29,6 +29,7 @@ def user_info(id):
         user_bio['name'], len(done_tasks), len(todo_list)))
     for task in done_tasks:
         print("\t{}".format(task['title']))
+
 
 if __name__ == "__main__":
     user_info(int(sys.argv[1]))
