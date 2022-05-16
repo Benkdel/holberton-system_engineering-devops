@@ -5,24 +5,23 @@
 if __name__ == "__main__":
     import json
     from sys import argv
-    from urllib import request
+    import requests
 
     employeeID = argv[1]
-    user_bio = {}
+    # user_bio = {}
     todo_list = []
     done_tasks = []
-    _url_1 = 'https://jsonplaceholder.typicode.com/users'
-    _url_2 = 'https://jsonplaceholder.typicode.com/todos'
-    with request.urlopen('{}/{}'.format(_url_1, employeeID)) as urlObj:
-        user_bio = json.loads(urlObj.read())
+    url_1 = 'https://jsonplaceholder.typicode.com/users'
+    url_2 = 'https://jsonplaceholder.typicode.com/todos'
+    
+    user_bio = requests.get('{}/{}'.format(url_1, employeeID)).json()
+    todo_response = requests.get(url_2).json()
 
-    with request.urlopen(_url_2) as urlObj:
-        response = json.loads(urlObj.read())
-        for r in response:
-            if r.get('userId') == int(employeeID):
-                todo_list.append(r)
-                if r.get('completed') is True:
-                    done_tasks.append(r)
+    for r in todo_response:
+        if r.get('userId') == int(employeeID):
+            todo_list.append(r)
+            if r.get('completed') is True:
+                done_tasks.append(r)
 
     print("Employee {} is done with tasks({}/{}):".format(
         user_bio.get('name'), len(done_tasks), len(todo_list)))
