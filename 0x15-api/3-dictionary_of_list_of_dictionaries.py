@@ -8,8 +8,8 @@
 if __name__ == '__main__':
     import csv
     import json
-    from urllib import request as rq
     from sys import argv as arguments
+    from urllib import request as rq
 
     users_bio = {}
     todo_list = []

@@ -6,8 +6,8 @@
 
 if __name__ == '__main__':
     import json
-    from urllib import request as rq
     from sys import argv as arguments
+    from urllib import request as rq
 
     employeeID = arguments[1]
     user_bio = {}
