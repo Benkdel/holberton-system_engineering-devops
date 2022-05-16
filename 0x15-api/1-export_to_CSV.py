@@ -20,7 +20,7 @@ if __name__ == '__main__':
     user_bio = rq.get('{}/{}'.format(_url_1, employeeID)).json()
     todo_response = rq.get(_url_2).json()
 
-    for r in response:
+    for r in todo_response:
         if r['userId'] == int(employeeID):
             todo_list.append(r)
 
