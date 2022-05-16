@@ -27,5 +27,6 @@ if __name__ == '__main__':
                               "completed": todo['completed']})
         status_dict[user['id']] = tasks
 
-    with open('{}.json'.format('todo_all_employees'), 'w', encoding="utf8") as json_file:
+    with open('{}.json'.format('todo_all_employees'), 'w',
+              encoding="utf8") as json_file:
         json.dump(status_dict, json_file, indent=4)
