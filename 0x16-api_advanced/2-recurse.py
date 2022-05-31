@@ -2,13 +2,11 @@
 """
     Recursively get all HOT posts in subreddit
 """
-
 import requests
 
 
 def recurse(subreddit, hot_list=[], page=''):
     """ returns a list of the top 10 hot posts in a given subreddit """
-
     userAgent = 'Python.wsl2.windows.ApiProject:v1 (by Dry-Improvement-3814)'
 
     _headers = {
@@ -17,12 +15,9 @@ def recurse(subreddit, hot_list=[], page=''):
 
     url = 'https://reddit.com/r/{}/hot.json'.format(subreddit)
 
-    if page != '':
-        _params = {
-            'after': page
-        }
-    else:
-        _params = {}
+    _params = {
+        'after': page
+    }
 
     if page is None:
         return hot_list
