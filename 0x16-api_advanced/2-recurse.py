@@ -17,11 +17,6 @@ def recurse(subreddit, hot_list=[], page=''):
 
     url = 'https://reddit.com/r/{}/hot.json'.format(subreddit)
 
-    if subreddit is None or type(subreddit) is not str:
-        if (len(hot_list) == 0):
-            return None
-        return hot_list
-
     if page != '':
         _params = {
             'after': page
