@@ -30,8 +30,11 @@ def top_ten(subreddit):
     with requests.get(url, headers=_headers, params=_params) as response:
         titles = response.json()
         if titles is None or (len(ch) > 0 and ch[0].get('kind') != 't3'):
-            print(None)
+            print("None")
         else:
             ch = titles.get('data').get('children')
-            for c in ch:
-                print(c.get('data').get('title'))
+            if ch is None:
+                print('None')
+            else:
+                for c in ch:
+                    print(c.get('data').get('title'))
