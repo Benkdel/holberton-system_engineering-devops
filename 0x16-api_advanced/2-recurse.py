@@ -42,8 +42,7 @@ def recurse(subreddit, hot_list=[], page=''):
             if ch is None or (len(ch) > 0 and ch[0].get('kind') != 't3'):
                 print(None)
             else:
-                for c in ch:
-                    hot_list.append(c.get('data').get('title'))
+                hot_list += list(map(lambda elm: elm.get('data').get('title'), ch))
             _page = titles.get('data').get('after')
 
     if _page is None or _page == 'null':
