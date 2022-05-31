@@ -6,14 +6,14 @@
 
 import requests
 
-userAgent = 'Python.wsl2.windows.ApiProject:v1 (by Dry-Improvement-3814)'
-
 
 def top_ten(subreddit):
     """
         returns a list of the top 10 hot posts in
         a given subreddit
     """
+    userAgent = 'Python.wsl2.windows.ApiProject:v1 (by Dry-Improvement-3814)'
+
     if subreddit is None or type(subreddit) is not str:
         print(None)
 
