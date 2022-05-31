@@ -7,14 +7,8 @@ import requests
 
 
 def recurse(subreddit, hot_list=[], page=''):
-    """
-        returns a list of the top 10 hot posts in
-        a given subreddit
-        args
-        subreddit: sub to look for
-        hot_list: list of titles
-        page: to look next page
-    """
+    """ returns a list of the top 10 hot posts in a given subreddit """
+
     userAgent = 'Python.wsl2.windows.ApiProject:v1 (by Dry-Improvement-3814)'
 
     _headers = {
