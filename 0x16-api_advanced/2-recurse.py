@@ -6,7 +6,7 @@ import requests
 
 
 def recurse(subreddit, hot_list=[], page=''):
-    """ returns a list of the top 10 hot posts in a given subreddit """
+    """ returns a list of hot posts in given subreddit """
     userAgent = 'Python.wsl2.windows.ApiProject:v1 (by Dry-Improvement-3814)'
 
     _headers = {
@@ -20,6 +20,8 @@ def recurse(subreddit, hot_list=[], page=''):
     }
 
     if page is None:
+        if (len(hot_list) == 0):
+            return None
         return hot_list
 
     with requests.get(url, headers=_headers, params=_params) as response:
