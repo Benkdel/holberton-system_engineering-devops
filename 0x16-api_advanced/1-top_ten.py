@@ -11,6 +11,8 @@ def top_ten(subreddit):
     """
         returns a list of the top 10 hot posts in
         a given subreddit
+        Args:
+        subreddit: Account to search
     """
     userAgent = 'Python.wsl2.windows.ApiProject:v1 (by Dry-Improvement-3814)'
 
