@@ -35,17 +35,15 @@ def recurse(subreddit, hot_list=[], page=''):
     else:
         _params = {}
 
-    with requests.get(url, headers=_headers, params=_params) as response:
-        titles = response.json()
-        if response.status_code == 200:
-            ch = titles.get('data').get('children')
-            if ch is None or (len(ch) > 0 and ch[0].get('kind') != 't3'):
-                print(None)
-            else:
-                hot_list += list(map(lambda elm: elm.get('data').get('title'), ch))
-            _page = titles.get('data').get('after')
+    if page is None:
+        return hot_list
 
-    if _page is None or _page == 'null':
-        return (hot_list)
-    else:
-        return recurse(subreddit, hot_list, _page)
+    with requests.get(url, headers=_headers, params=_params) as response:
+        if response.status_code == 200:
+            res = response.json()
+            _page = res.get('data').get('after')
+            ch = res.get('data').get('children')
+            hot_list += list(map(lambda elm: elm.get('data').get('title'), ch))
+            return recurse(subreddit, hot_list, _page)
+        else:
+            return None
