@@ -27,14 +27,14 @@ def top_ten(subreddit):
         'limit': 10
     }
 
-    with requests.get(url, headers=_headers, params=_params, allow_redirects=False) as response:
+    with requests.get(url, headers=_headers, params=_params) as response:
         titles = response.json()
         if titles is not None:
             ch = titles.get('data').get('children')
             if ch is None or (len(ch) > 0 and ch[0].get('kind') != 't3'):
-                print(None)
+                print('None')
             else:
                 for c in ch:
                     print(c.get('data').get('title'))
         else:
-            print(None)
+            print('None')
