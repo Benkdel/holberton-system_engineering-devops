@@ -10,6 +10,8 @@ import requests
 def number_of_subscribers(subreddit):
     """
         Returns number of subscribers for given subredit
+        Args:
+            subreddit: Account to search
     """
     userAgent = 'Python.wsl2.windows.ApiProject:v1 (by Dry-Improvement-3814)'
 
