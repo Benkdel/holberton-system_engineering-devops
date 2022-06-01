@@ -1,36 +1,23 @@
 #!/usr/bin/python3
 """
-    Recursively get all HOT posts in subreddit
+    get all hots
 """
 import requests
 
 
-def recurse(subreddit, hot_list=[], page=''):
-    """ returns a list of hot posts in given subreddit """
-    userAgent = 'Python.wsl2.windows.ApiProject:v1 (by Dry-Improvement-3814)'
+def recurse(subreddit, hot_list=[], after=""):
+    """ List containing the titles of all hot articles for a given subreddit """
+    url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
+    res = requests.get(url, headers={'User-Agent': 'AngentMEGO'},
+                       params={'after': after})
 
-    _headers = {
-        'User-Agent': userAgent
-    }
-
-    url = 'https://reddit.com/r/{}/hot.json'.format(subreddit)
-
-    _params = {
-        'after': page
-    }
-
-    if page is None:
-        if (len(hot_list) == 0):
-            return None
+    if after is None:
         return hot_list
 
-    with requests.get(url, headers=_headers, params=_params) as response:
-        if response.status_code == 200:
-            res = response.json()
-            _page = res.get('data').get('after')
-            ch = res.get('data').get('children')
-            for c in ch:
-                    hot_list.append(c.get('data').get('title'))
-            return recurse(subreddit, hot_list, _page)
-        else:
-            return None
+    if res.status_code == 200:
+        res = res.json()
+        after = res.get('data').get('after')
+        hots = res.get('data').get('children')
+        hot_list += list(map(lambda elm: elm.get('data').get('title'), hots))
+        return recurse(subreddit, hot_list, after)
+    return None
