@@ -10,3 +10,6 @@ from this guide only do the following:
     - set up a system to create a sock in working directory (modify paths to global, not env)
     - dont use a diferent file por WSGI, use same as flask app
     - modify the same nginx default file, adding a location with proxy red
+
+scp avoiding public key denied error: 
+sudo scp -i ~/.ssh/id_rsa ubuntu@youIP:/etc/systemd/system/gunicorn.service .
